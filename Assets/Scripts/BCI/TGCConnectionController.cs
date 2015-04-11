@@ -18,17 +18,9 @@ public class TGCConnectionController : MonoBehaviour {
 	public event UpdateIntValueDelegate UpdatePoorSignalEvent;
 	public event UpdateIntValueDelegate UpdateAttentionEvent;
 	public event UpdateIntValueDelegate UpdateMeditationEvent;
-	public event UpdateIntValueDelegate UpdateRawdataEvent;
-	public event UpdateIntValueDelegate UpdateBlinkEvent;
 	
 	public event UpdateFloatValueDelegate UpdateDeltaEvent;
-	public event UpdateFloatValueDelegate UpdateThetaEvent;
-	public event UpdateFloatValueDelegate UpdateLowAlphaEvent;
-	public event UpdateFloatValueDelegate UpdateHighAlphaEvent;
-	public event UpdateFloatValueDelegate UpdateLowBetaEvent;
-	public event UpdateFloatValueDelegate UpdateHighBetaEvent;
-	public event UpdateFloatValueDelegate UpdateLowGammaEvent;
-	public event UpdateFloatValueDelegate UpdateHighGammaEvent;
+
 	
 
 	void Start () {
@@ -51,7 +43,7 @@ public class TGCConnectionController : MonoBehaviour {
 		    byte[] myWriteBuffer = Encoding.ASCII.GetBytes(@"{""enableRawOutput"": true, ""format"": ""Json""}");
 		    stream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
 			
-			InvokeRepeating("ParseData",0.1f,0.02f);
+			InvokeRepeating("ParseData",0.1f,0.06f);
 		}
 	}
 	
@@ -90,34 +82,7 @@ public class TGCConnectionController : MonoBehaviour {
 				  if(UpdateDeltaEvent != null){
 					 UpdateDeltaEvent(float.Parse(eegPowers["delta"].ToString()));			
 					}
-				  if(UpdateThetaEvent != null){
-					 UpdateThetaEvent(float.Parse(eegPowers["theta"].ToString()));			
-					}
-				  if(UpdateLowAlphaEvent != null){
-					 UpdateLowAlphaEvent(float.Parse(eegPowers["lowAlpha"].ToString()));
-					}
-				  if(UpdateHighAlphaEvent != null){
-					 UpdateHighAlphaEvent(float.Parse(eegPowers["highAlpha"].ToString()));
-					}
-				  if(UpdateLowBetaEvent != null){
-					 UpdateLowBetaEvent(float.Parse(eegPowers["lowBeta"].ToString()));
-					}
-				  if(UpdateHighBetaEvent != null){
-					 UpdateHighBetaEvent(float.Parse(eegPowers["highBeta"].ToString()));
-					}
-				  if(UpdateLowGammaEvent != null){
-					 UpdateLowGammaEvent(float.Parse(eegPowers["lowGamma"].ToString()));			
-					}
-				  if(UpdateHighGammaEvent != null){
-					 UpdateHighGammaEvent(float.Parse(eegPowers["highGamma"].ToString()));
-					}
 	            }
-	          }
-	          else if(primary.Contains("rawEeg") && UpdateRawdataEvent != null){
-					  UpdateRawdataEvent(int.Parse(primary["rawEeg"].ToString()));
-	          }
-	          else if(primary.Contains("blinkStrength") && UpdateBlinkEvent != null){
-					  UpdateBlinkEvent(int.Parse(primary["blinkStrength"].ToString()));
 	          }
 	        }
 	      }

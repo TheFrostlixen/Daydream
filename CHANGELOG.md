@@ -10,3 +10,7 @@ v0.2
 - added MouseLook to Main Camera object
 - created prefabs for player, neurosky module, and particle system
 --TODO: fix issue with exporting Jaydock.Json.dll
+
+v0.3
+=====
+- no clue lol
