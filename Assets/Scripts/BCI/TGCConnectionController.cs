@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Jayrock.Json;
-using Jayrock.Json.Conversion;
+//using Jayrock.Json;
+//using Jayrock.Json.Conversion;
 using System.Net.Sockets;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json;
 
 public class TGCConnectionController : MonoBehaviour {
 	private TcpClient client; 
@@ -58,7 +59,9 @@ public class TGCConnectionController : MonoBehaviour {
 	          if(packet.Length == 0)
 	            continue;
 	
-	          IDictionary primary = (IDictionary)JsonConvert.Import(typeof(IDictionary), packet); // FUCK THIS LINE, LIKE SERIOUSLY this is why we can't compile
+	          //IDictionary primary = (IDictionary)JsonConvert.Import(typeof(IDictionary), packet);
+			  //IDictionary primary = new JavaScriptSerializer().Deserialize<IDictionary>( packet );
+			  IDictionary primary =	JsonConvert.DeserializeObject<IDictionary>( packet );
 	
 	          if(primary.Contains("poorSignalLevel")){
 						

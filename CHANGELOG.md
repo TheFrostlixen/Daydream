@@ -14,3 +14,8 @@ v0.2
 v0.3
 =====
 - no clue lol
+
+v0.4
+=====
+- added player movement
+- removed Jayrock.JSON dependencies
