@@ -19,3 +19,10 @@ v0.4
 =====
 - added player movement
 - removed Jayrock.JSON dependencies
+
+V0.5
+=====
+-Added cursor particle effect
+-Added a particle texture pack 
+-Added revamped look(cursor)particle system to show attention levels
+-TODO: continue with particle system implementation
