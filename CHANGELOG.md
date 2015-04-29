@@ -26,3 +26,9 @@ V0.5
 -Added a particle texture pack 
 -Added revamped look(cursor)particle system to show attention levels
 -TODO: continue with particle system implementation
+
+v0.6.0.1
+=====
+-Added newest/final models for flowers
+-Added audio, with slight modifications
+-Particle systems fixed slightly

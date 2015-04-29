@@ -7,13 +7,12 @@ public class PlayerAudio : MonoBehaviour
 	public AudioClip audioFocus;
 	public AudioClip audioMeditation;
 
-	AudioSource sourceFocus;
-	AudioSource sourceMeditation;
+	public AudioSource sourceFocus;
+	public AudioSource sourceMeditation;
 	TGCConnectionController controller;
 	
 	int attention1;
 	int meditation1;
-	float delta;
 
 	void Start()
 	{
@@ -21,7 +20,6 @@ public class PlayerAudio : MonoBehaviour
 		controller = GameObject.Find("NeuroSkyTGCController").GetComponent<TGCConnectionController>();
 		controller.UpdateAttentionEvent += OnUpdateAttention;
 		controller.UpdateMeditationEvent += OnUpdateMeditation;
-		controller.UpdateDeltaEvent += OnUpdateDelta;
 
 		// set up focus audio source
 		sourceFocus.loop = true;
@@ -39,22 +37,12 @@ public class PlayerAudio : MonoBehaviour
 	void Update()
 	{
 		// attention sound
-		if (attention1 > 50) // arbitrary lower bound to play audio
-		{
-			sourceFocus.volume = attention1 / 100.0f;
-			sourceFocus.Play();
-		}
-		else
-			sourceFocus.Stop();
+		sourceFocus.volume = attention1 / 100.0f;
+		sourceFocus.Play();
 
 		// meditation sound
-		if (meditation1 > 50) // again, arbitrary lower bound
-		{
-			sourceMeditation.volume = meditation1 / 100.0f;
-			sourceMeditation.Play();
-		}
-		else
-			sourceMeditation.Stop();
+		sourceMeditation.volume = meditation1 /100.0f;
+		sourceMeditation.Play();
 	}
 	
 	void OnUpdateAttention(int value)
@@ -65,10 +53,5 @@ public class PlayerAudio : MonoBehaviour
 	void OnUpdateMeditation(int value)
 	{
 		meditation1 = value;
-	}
-
-	void OnUpdateDelta(float value)
-	{
-		delta = value;
 	}
 }
