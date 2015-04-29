@@ -12,7 +12,6 @@ public class DisplayData : MonoBehaviour
     public static int poorSignal1;
     public static int attention1;
     public static int meditation1;
-	private float delta;
 
 	// Testing brain wave indicator bar
 	public float barDisplayFoc; //current progress for focus
@@ -32,9 +31,7 @@ public class DisplayData : MonoBehaviour
 
 		controller.UpdatePoorSignalEvent += OnUpdatePoorSignal;
 		controller.UpdateAttentionEvent += OnUpdateAttention;
-		controller.UpdateMeditationEvent += OnUpdateMeditation;
-		controller.UpdateDeltaEvent += OnUpdateDelta;
-		
+		controller.UpdateMeditationEvent += OnUpdateMeditation;		
     }
 	
 	void OnUpdatePoorSignal(int value){
@@ -56,9 +53,6 @@ public class DisplayData : MonoBehaviour
 	}
 	void OnUpdateMeditation(int value){
 		meditation1 = value;
-	}
-	void OnUpdateDelta(float value){
-		delta = value;
 	}
 
 

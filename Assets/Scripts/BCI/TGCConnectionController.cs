@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-//using Jayrock.Json;
-//using Jayrock.Json.Conversion;
+using Jayrock.Json;// Temporarily using this, see below for the problem
+using Jayrock.Json.Conversion;
 using System.Net.Sockets;
 using System.Text;
 using System.IO;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
 public class TGCConnectionController : MonoBehaviour {
 	private TcpClient client; 
@@ -39,10 +39,10 @@ public class TGCConnectionController : MonoBehaviour {
 		if(!IsInvoking("ParseData")){
 			
 			client = new TcpClient("127.0.0.1", 13854);	
-		    stream = client.GetStream();
-		    buffer = new byte[1024];
-		    byte[] myWriteBuffer = Encoding.ASCII.GetBytes(@"{""enableRawOutput"": true, ""format"": ""Json""}");
-		    stream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
+			stream = client.GetStream();
+			buffer = new byte[1024];
+			byte[] myWriteBuffer = Encoding.ASCII.GetBytes(@"{""enableRawOutput"": true, ""format"": ""Json""}");
+			stream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
 			
 			InvokeRepeating("ParseData",0.1f,0.06f);
 		}
@@ -59,9 +59,9 @@ public class TGCConnectionController : MonoBehaviour {
 	          if(packet.Length == 0)
 	            continue;
 	
-	          //IDictionary primary = (IDictionary)JsonConvert.Import(typeof(IDictionary), packet);
+	          IDictionary primary = (IDictionary)JsonConvert.Import(typeof(IDictionary), packet);
 			  //IDictionary primary = new JavaScriptSerializer().Deserialize<IDictionary>( packet );
-			  IDictionary primary =	JsonConvert.DeserializeObject<IDictionary>( packet );
+			  //IDictionary primary =	JsonConvert.DeserializeObject<IDictionary>( packet );
 	
 	          if(primary.Contains("poorSignalLevel")){
 						
@@ -70,12 +70,12 @@ public class TGCConnectionController : MonoBehaviour {
 				   }
 						
 	            if(primary.Contains("eSense")){
-	              IDictionary eSense = (IDictionary)primary["eSense"];
+	              IDictionary eSense = (IDictionary)primary["eSense"]; // ******* Can't seem to do this? Says there is an invalid conversion
 				  if(UpdateAttentionEvent != null){
-					 UpdateAttentionEvent(int.Parse(eSense["attention"].ToString()));
+								UpdateAttentionEvent(int.Parse(eSense["attention"].ToString()));
 				   }		
 				  if(UpdateMeditationEvent != null){
-					 UpdateMeditationEvent(int.Parse(eSense["meditation"].ToString()));
+								UpdateMeditationEvent(int.Parse(eSense["meditation"].ToString()));
 				   }
 	            }
 	
