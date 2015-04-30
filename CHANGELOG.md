@@ -31,4 +31,19 @@ v0.6.0.1
 =====
 -Added newest/final models for flowers
 -Added audio, with slight modifications
+<<<<<<< HEAD
 -Particle systems fixed slightly
+
+v0.7
+=====
++ added wait time to PlayerMove
++ removed unnecessary TGCConnectionController from PlayerAudio
++ fixed flower colliders
++ added flower recoloring based on meditation waves
+- TODO find audio
+- TODO finalize models & model creation
+- TODO finish particle system
+- TODO improve lighting
+=======
+-Particle systems fixed slightly
+>>>>>>> origin/master

@@ -102,7 +102,7 @@ public class DisplayData : MonoBehaviour
 
 	// testing brain wave indicator bar
 
-	void Update() {
+	void FixedUpdate() {
 		//tested with time to see if it worked
 		//barDisplayFoc = Time.time*0.05f;
 		//barDisplayMed = Time.time*0.05f;

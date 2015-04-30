@@ -59,8 +59,13 @@ public class TGCConnectionController : MonoBehaviour {
 	          if(packet.Length == 0)
 	            continue;
 	
+<<<<<<< HEAD
+			  // I FUCKING HATE YOU JAYROCK YOU'RE A DAMN FUCKING COMMIE
+	          IDictionary primary = (IDictionary)JsonConvert.Import(typeof(IDictionary), packet);
+=======
 	          IDictionary primary = (IDictionary)JsonConvert.Import(typeof(IDictionary), packet);
 			  //IDictionary primary = new JavaScriptSerializer().Deserialize<IDictionary>( packet );
+>>>>>>> origin/master
 			  //IDictionary primary =	JsonConvert.DeserializeObject<IDictionary>( packet );
 	
 	          if(primary.Contains("poorSignalLevel")){
