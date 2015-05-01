@@ -19,11 +19,13 @@ public class PlayerMove : MonoBehaviour
 		// check if ray has NOT collided with something
 		if ( !Physics.Raycast(ray, out hit, 100) )
 		{
+			Debug.Log ("ajsfdlkjsafl");
 			if (Timer < 0) // yes this is ugly, but less so than having to do 2 raycasts.
 				GameObject.FindWithTag("Player").transform.Translate( new Vector3( (Camera.main.transform.forward.x), 0, (Camera.main.transform.forward.z) ) * Time.deltaTime * speed);
 		}
 		else // player started looking at something, better stop
 		{
+			Debug.Log ("nothing works gg");
 			Timer = WaitTime;
 		}
 	}

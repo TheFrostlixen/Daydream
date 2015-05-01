@@ -65,7 +65,7 @@ public class DisplayData : MonoBehaviour
 		// debug information, not relevant to Cardboard implementation
 		GUILayout.BeginHorizontal();
 
-        if (GUILayout.Button("Connect"))
+      /*  if (GUILayout.Button("Connect"))
         {
             controller.Connect();
         }
@@ -73,7 +73,7 @@ public class DisplayData : MonoBehaviour
         {
             controller.Disconnect();
 			indexSignalIcons = 1;
-        }
+        }*/
 		
 		GUILayout.Space(Screen.width-250);
 		GUILayout.Label(signalIcons[indexSignalIcons]);
@@ -82,7 +82,7 @@ public class DisplayData : MonoBehaviour
 
 		// Testing brain wave indicator bar 
 		//FOCUS BAR: draw the background:
-		GUI.BeginGroup(new Rect(posFoc.x, posFoc.y, sizeFoc.x, sizeFoc.y));
+		/*GUI.BeginGroup(new Rect(posFoc.x, posFoc.y, sizeFoc.x, sizeFoc.y));
 		GUI.Box(new Rect(0,0, sizeFoc.x, sizeFoc.y), backgroundTex);
 		//draw the filled-in part
 		GUI.BeginGroup(new Rect(0,0, sizeFoc.x * barDisplayFoc, sizeFoc.y));
@@ -97,15 +97,12 @@ public class DisplayData : MonoBehaviour
 		GUI.BeginGroup(new Rect(0,0, sizeMed.x * barDisplayMed, sizeMed.y));
 		GUI.Box(new Rect(0,0, sizeFoc.x, sizeFoc.y), meditationTex);
 		GUI.EndGroup();
-		GUI.EndGroup();
+		GUI.EndGroup();*/
     }
 
 	// testing brain wave indicator bar
 
 	void FixedUpdate() {
-		//tested with time to see if it worked
-		//barDisplayFoc = Time.time*0.05f;
-		//barDisplayMed = Time.time*0.05f;
 		barDisplayFoc = attention1*0.01f;
 		barDisplayMed = meditation1*0.01f;
 	}

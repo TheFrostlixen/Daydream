@@ -1,21 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-<<<<<<< HEAD
-public class RaycastCreate : MonoBehaviour
-{
+public class RaycastCreate : MonoBehaviour {
 	public float timerBase = 0.5f;
 	public Transform FlowerLow;
+	public Transform FlowerMid;
 	public Transform FlowerHigh;
 	public int resizeThreshold = 70;
 	public int recolorThreshold = 70;
-	
-=======
-public class RaycastCreate : MonoBehaviour {
-	public Transform FlowerLow;
-	public Transform FlowerHigh;
-	public float Timer=0.5f;
->>>>>>> origin/master
+	public int createThreshold = 70;
 	Vector3 start = new Vector3(Screen.width*0.5f, Screen.height*0.5f, 0.0f);
 	float Timer = 0.5f;
 	
@@ -31,21 +24,24 @@ public class RaycastCreate : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit, 100))
 		{
 			//access wave values through displayData
-<<<<<<< HEAD
-			if (hit.collider.name.Equals ("Terrain"))
+			if (hit.collider.name.Equals ("Terrain")) 
 			{
-				if(/*DisplayData.attention1 > 65 &&*/ Timer < 0)
+				if(DisplayData.attention1 > createThreshold && Timer < 0)
 				{
 					// create flowers, each rotated a bit different based on meditation
-					if(DisplayData.meditation1 < 50)
+					if(DisplayData.meditation1 < 30)
 					{
-						Instantiate( FlowerHigh, hit.point, Quaternion.Euler(0, ( Random.Range(0.0f,360.0f) ), 0) );
+						Instantiate (FlowerLow, hit.point,Quaternion.Euler(270, ( Random.Range(0.0f,360.0f) ), 0));
+					}
+					else if(DisplayData.meditation1 < 60 && DisplayData.meditation1 >= 30 )
+					{
+						Instantiate( FlowerMid, hit.point, Quaternion.Euler(270, ( Random.Range(0.0f,360.0f) ), 0) );
 					}
 					else
 					{
-						Instantiate( FlowerHigh, hit.point, Quaternion.Euler(0, ( Random.Range(0.0f,360.0f) ), 0) );
+						Instantiate (FlowerHigh, hit.point, Quaternion.Euler(270, ( Random.Range(0.0f,360.0f) ), 0));
 					}
-					Timer = timerBase; //reset timer
+					Timer = timerBase;
 				}
 			}
 			else // assume the raycast hit a flower
@@ -72,25 +68,13 @@ public class RaycastCreate : MonoBehaviour {
 					FlowerShader.ColorToHSV( hit.collider.gameObject.GetComponent<Renderer>().material.color, out h, out s, out v );
 
 					// adjust hue based on meditation
-					h = 0;//DisplayData.meditation1 * 3.6f; // hue: 0-360
+					h = DisplayData.meditation1 * 3.6f; // hue: 0-360
 
 					// set the object's adjusted color
 					hit.collider.gameObject.GetComponent<Renderer>().material.color = FlowerShader.ColorFromHSV(h, s, v, 1.0f);
 
 					// reset timer
 					Timer = timerBase;
-=======
-			if (hit.collider.name.Equals ("Terrain")) {
-				if(DisplayData.attention1 > 65 && Timer < 0){
-					// create flowers, each rotated a bit different based on meditation
-					if(DisplayData.meditation1 < 50){
-						Instantiate (FlowerLow, hit.point, Quaternion.Euler(0,(Random.Range(0.0f,360.0f)),0));
-					}
-					else{
-						Instantiate (FlowerHigh, hit.point, Quaternion.Euler(0,(Random.Range(0.0f,360.0f)),0));
-					}
-					Timer = 0.5f; //reset timer
->>>>>>> origin/master
 				}
 			}
 		}
